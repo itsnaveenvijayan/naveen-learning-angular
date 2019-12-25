@@ -5,13 +5,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                  <input type="hidden" [value]="users.page"/>
+                <div class="main-box-body clearfix">                  
                   <nav aria-label="Page navigation example">
                   <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li  class="page-item"><a class="page-link" href="#">{{item}}</a></li>                    
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li [ngClass] = "{'page-item': true, 'disabled': users.page == 1 }" ><a class="page-link" href="#">Previous</a></li>
+                    <!-- <li *ngFor = "let page of users.pageNumbers" class="page-item"><a [routerLink]="['/home']" [queryParams]="{ page: page }" class="page-link" href="#">{{page}}</a></li>                     -->
+                     <li *ngFor = "let page of users.pageNumbers" class="page-item"><button (click) ="getUsers(page)" class="page-link">{{page}}</button></li>     
+                    <li [ngClass] = "{'page-item': true, 'disabled': users.page == users.total_pages }" ><a class="page-link" href="#">Next</a></li>
                   </ul>
                 </nav>
                     <div class="table-responsive">

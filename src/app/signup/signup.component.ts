@@ -15,7 +15,7 @@ import 'rxjs/add/operator/filter';
 
 export class SignupComponent {
 
-  user: User;
+  private user: User;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private queryParam: QueryparamsService,private router: Router) { 
       this.user = {

@@ -13,13 +13,15 @@ export class ListUsers{
   total: number;
   total_pages: number;  
   data: User[];
-  page_numbers: number[];
+  private page_numbers: number[]; 
 
-  set set_page_numbers(value: boolean){
-    let pagenumbers: number[];
-    for (let i = 1; i < this.total_pages; i++) {
-      pagenumbers.push(i)
+  get pageNumbers(){
+    this.page_numbers = new Array<number>();
+    for (let i = 1; i <= this.total_pages; i++) {      
+      this.page_numbers.push(i)
     }
-    this.page_numbers = pagenumbers;
+    return this.page_numbers;
   }
+
+  
 }
