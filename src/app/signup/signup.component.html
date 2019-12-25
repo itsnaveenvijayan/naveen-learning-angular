@@ -1,0 +1,26 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign Up</h5>
+            <form (submit)="register()" class="form-signin" ngNativeValidate>
+              <div class="form-label-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" name="email" class="form-control" placeholder="Email address" [(ngModel)]="user.email" required autofocus #emailInput>
+              </div>
+              <br/>
+              <div class="form-label-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required>
+              </div>
+              <br/>              
+              <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+              <hr class="my-4">
+              <a [routerLink]="['']" [queryParams]="{ email: emailInput.value }">Sign In</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

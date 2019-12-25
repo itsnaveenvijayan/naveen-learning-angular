@@ -1,20 +1,18 @@
-
-
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form (submit)="login($event)" class="form-signin" ngNativeValidate>
+            <form (submit)="login()" class="form-signin" ngNativeValidate>
               <div class="form-label-group">
                 <label for="inputEmail">Email address</label>
-                <input type="email" name="email" class="form-control" placeholder="Email address" value="eve.holt@reqres.in" required autofocus>                
+                <input type="email" name="email" class="form-control" placeholder="Email address" [(ngModel)]="user.email" required autofocus #emailInput>                
               </div>
               <br/>
               <div class="form-label-group">
                 <label for="inputPassword">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password" value="eve.holt@reqres.in" required>               
+                <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required>               
               </div>
               <br/>
               <div class="custom-control custom-checkbox mb-3">
@@ -23,7 +21,7 @@
               </div>
               <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
               <hr class="my-4">
-              
+              <a [routerLink]="['/signup']" [queryParams]="{ email: emailInput.value }">Sign Up</a>
             </form>
           </div>
         </div>
