@@ -3,17 +3,19 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User, ListUsers } from '../shared/user';
 import { QueryparamsService } from '../service/queryparams.service'; 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDefaultComponent } from '../modal-default/modal-default.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   private users: ListUsers = new ListUsers();
   
-  constructor(private http: HttpClient, private queryParam: QueryparamsService) { 
+  constructor(private http: HttpClient, private queryParam: QueryparamsService,private modalService: NgbModal) { 
     
     this.getUsers()
     
@@ -42,7 +44,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  openFormModal() {
+    const modalRef = this.modalService.open(ModalDefaultComponent);
+    
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
+}
 
 }

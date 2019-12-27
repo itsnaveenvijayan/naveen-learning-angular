@@ -14,11 +14,13 @@ import { QueryparamsService } from './service/queryparams.service';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component'; 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalDefaultComponent } from './modal-default/modal-default.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule ],
   declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [QueryparamsService]
+  providers: [QueryparamsService],
+  entryComponents: [ModalDefaultComponent]
 })
 export class AppModule { }
