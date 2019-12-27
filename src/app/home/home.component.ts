@@ -19,15 +19,15 @@ export class HomeComponent implements OnInit {
     
   }
 
-  public getUsers(page?: number): ListUsers
+  public getUsers(pagenumber?: number): ListUsers
   {
     
     const url = 'https://reqres.in/api/users';
 
-    let params:  HttpParams = new HttpParams();
-    params.append('page', (page || 1).toString());
+    let param = { page : pagenumber };
+    
 
-    return this.http.get<ListUsers>(url,{ params: params } )
+    return this.http.get<ListUsers>(url,{ params: param } )
     .subscribe((response: ListUsers) => 
     {
       this.users.page = response.page;
