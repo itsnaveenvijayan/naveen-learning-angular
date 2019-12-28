@@ -16,10 +16,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalDefaultComponent } from './modal-default/modal-default.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule,ReactiveFormsModule  ],
-  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent  ],
+  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent, FooterComponent  ],
   bootstrap:    [ AppComponent ],
   providers: [QueryparamsService],
   entryComponents: [ModalDefaultComponent, ModalConfirmComponent]
