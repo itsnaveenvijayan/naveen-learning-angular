@@ -17,12 +17,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalDefaultComponent } from './modal-default/modal-default.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { FooterComponent } from './footer/footer.component';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule,ReactiveFormsModule  ],
   declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent, FooterComponent  ],
   bootstrap:    [ AppComponent ],
-  providers: [QueryparamsService],
+  providers: [QueryparamsService,{provide: APP_BASE_HREF, useValue: '/app'}],
   entryComponents: [ModalDefaultComponent, ModalConfirmComponent]
 })
 export class AppModule { }
