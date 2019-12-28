@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -17,8 +17,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalDefaultComponent } from './modal-default/modal-default.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule ],
-  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule,ReactiveFormsModule  ],
+  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent  ],
   bootstrap:    [ AppComponent ],
   providers: [QueryparamsService],
   entryComponents: [ModalDefaultComponent]

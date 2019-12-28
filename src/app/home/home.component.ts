@@ -44,9 +44,12 @@ export class HomeComponent {
     });
   }
 
-  openFormModal() {
+  openFormModal(e: Event, id: number) {
+    e.preventDefault();
     const modalRef = this.modalService.open(ModalDefaultComponent);
-    
+
+    modalRef.componentInstance.id = 10; // should be the id
+
     modalRef.result.then((result) => {
       console.log(result);
     }).catch((error) => {
