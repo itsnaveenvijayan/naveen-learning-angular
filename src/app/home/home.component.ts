@@ -44,17 +44,31 @@ export class HomeComponent {
     });
   }
 
-  openFormModal(e: Event, id: number) {
+   getUser = (id:number): Observable<any> => {
+    
+    const url = `https://reqres.in/api/users/${id}`;       
+
+    return this.http.get(url);
+    
+   }
+
+  openFormModal(e: Event, user: User) {
     e.preventDefault();
-    const modalRef = this.modalService.open(ModalDefaultComponent);
 
-    modalRef.componentInstance.id = 10; // should be the id
+    this.getUser(user.id).subscribe((response) => 
+    {
+      const modalRef = this.modalService.open(ModalDefaultComponent);
+    
+      modalRef.componentInstance.user = response.data; 
 
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
+      modalRef.result.then((result) => {
+        console.log(result);
+      }).catch((error) => {
+        console.log(error);
+      });
     });
+
+    
 }
 
 }
