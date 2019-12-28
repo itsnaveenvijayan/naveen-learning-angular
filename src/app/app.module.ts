@@ -22,6 +22,6 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
   declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent  ],
   bootstrap:    [ AppComponent ],
   providers: [QueryparamsService],
-  entryComponents: [ModalDefaultComponent]
+  entryComponents: [ModalDefaultComponent, ModalConfirmComponent]
 })
 export class AppModule { }

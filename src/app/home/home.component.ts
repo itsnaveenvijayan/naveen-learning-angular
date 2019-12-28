@@ -5,6 +5,7 @@ import { User, ListUsers } from '../shared/user';
 import { QueryparamsService } from '../service/queryparams.service'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDefaultComponent } from '../modal-default/modal-default.component';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-home',
@@ -67,8 +68,23 @@ export class HomeComponent {
         console.log(error);
       });
     });
+    }
 
-    
-}
+    openConfirmDelete(e: Event, user: User) {
+       e.preventDefault();
+
+      this.getUser(user.id).subscribe((response) => 
+      {
+        const modalRef = this.modalService.open(ModalConfirmComponent);
+      
+        modalRef.componentInstance.user = response.data; 
+
+        modalRef.result.then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
+    }
 
 }

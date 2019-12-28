@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <img [src]="user.avatar" alt="">
-                                        <a href="#" class="user-link">{{user.last_name}},</a>
+                                        <a class="user-link">{{user.last_name}},</a>
                                         <span class="user-subhead">{{user.first_name}}</span>
                                     </td>
                                     <td>2013/08/12</td>
@@ -55,7 +55,7 @@
                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
-                                        <a href="#" class="table-link danger">
+                                        <a [routerLink]="" (click)= "openConfirmDelete($event, user)" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
