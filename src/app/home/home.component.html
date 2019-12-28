@@ -7,12 +7,13 @@
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">                  
                   <nav aria-label="Page navigation example">
+                  <label>Showing {{ users.page * users.per_page - users.per_page + 1 }} to {{ users.page * users.per_page}} of {{users.total}} entries</label>
                   <ul class="pagination">
                     <li [ngClass] = "{'page-item': true, 'disabled': users.page == 1 }" ><button (click) ="getUsers(users.page - 1)" class="page-link">Previous</button></li>
                    
                      <li *ngFor = "let page of users.pageNumbers" class="page-item"><button (click) ="getUsers(page)" class="page-link">{{page}}</button></li>     
-                    <li [ngClass] = "{'page-item': true, 'disabled': users.page == users.total_pages }" ><button (click) ="getUsers(users.page + 1)" class="page-link">Next</button></li>
-                  </ul>
+                    <li [ngClass] = "{'page-item': true, 'disabled': users.page == users.total_pages }" ><button (click) ="getUsers(users.page + 1)" class="page-link">Next</button></li>                    
+                  </ul>                  
                 </nav>
                     <div class="table-responsive">
                         <table class="table user-list">
@@ -33,7 +34,7 @@
                                     </td>
                                     <td>
                                         <img [src]="user.avatar" alt="">
-                                        <a href="#" class="user-link">{{user.last_name}},</a>
+                                        <a class="user-link">{{user.last_name}},</a>
                                         <span class="user-subhead">{{user.first_name}}</span>
                                     </td>
                                     <td>2013/08/12</td>
@@ -42,19 +43,19 @@
                                         <a>{{user.email}}</a>
                                     </td>
                                     <td style="width: 20%;">
-                                        <a href="#" class="table-link">
+                                        <!-- <a href="#" class="table-link">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                             </span>
-                                        </a>
-                                        <a href="#" class="table-link">
+                                        </a> -->
+                                        <a [routerLink]="" (click)="openFormModal($event, user)">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
-                                        <a href="#" class="table-link danger">
+                                        <a [routerLink]="" (click)= "openConfirmDelete($event, user)" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

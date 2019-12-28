@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -14,11 +14,14 @@ import { QueryparamsService } from './service/queryparams.service';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component'; 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalDefaultComponent } from './modal-default/modal-default.component';
+import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule ],
-  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule,ReactiveFormsModule  ],
+  declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent  ],
   bootstrap:    [ AppComponent ],
-  providers: [QueryparamsService]
+  providers: [QueryparamsService],
+  entryComponents: [ModalDefaultComponent, ModalConfirmComponent]
 })
 export class AppModule { }
