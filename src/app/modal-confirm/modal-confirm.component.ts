@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as url from '../shared/serviceurls';
 
 @Component({
   selector: 'app-modal-confirm',
@@ -16,13 +17,12 @@ export class ModalConfirmComponent implements OnInit {
   }
 
   deleteUser(userid:number){
-    const url = `https://reqres.in/api/users/${userid}`;       
+
     let options = {
       headers: new HttpHeaders().set('Content-Type','application/json')
     }
-    return this.http.delete(url)
-    .subscribe(response => {
-        
+    return this.http.delete(url.deleteUser(userid))
+    .subscribe(response => {        
         this.modal.close();
     });
   }

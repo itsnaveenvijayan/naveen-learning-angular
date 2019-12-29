@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { User, ListUsers } from '../shared/user';
-import { QueryparamsService } from '../service/queryparams.service'; 
+import { User, ListUsers } from '../shared/user'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDefaultComponent } from '../modal-default/modal-default.component';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import * as url from '../shared/serviceurls';
 
 @Component({
   selector: 'app-home',
@@ -16,21 +16,18 @@ export class HomeComponent {
 
   private users: ListUsers = new ListUsers();
   
-  constructor(private http: HttpClient, private queryParam: QueryparamsService,private modalService: NgbModal) { 
+  constructor(private http: HttpClient, private modalService: NgbModal) { 
     
     this.getUsers()
     
   }
 
   public getUsers(pagenumber?: number): ListUsers
-  {
-    
-    const url = 'https://reqres.in/api/users';
-
+  {    
     let param = { page : pagenumber };
     
 
-    return this.http.get<ListUsers>(url,{ params: param } )
+    return this.http.get<ListUsers>(url.getUsers,{ params: param } )
     .subscribe((response: ListUsers) => 
     {
       this.users.page = response.page;
@@ -45,11 +42,9 @@ export class HomeComponent {
     });
   }
 
-   getUser = (id:number): Observable<any> => {
-    
-    const url = `https://reqres.in/api/users/${id}`;       
+   getUser = (id:number): Observable<any> => {     
 
-    return this.http.get(url);
+    return this.http.get(url.getUser(id));
     
    }
 

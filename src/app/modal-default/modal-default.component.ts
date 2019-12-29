@@ -3,8 +3,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../shared/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UtilitiesService } from '../service/utilities.service'; 
 import $ from 'jquery'
+import * as url from '../shared/serviceurls';
 
 @Component({
   selector: 'app-modal-default',
@@ -13,10 +14,9 @@ import $ from 'jquery'
 })
 export class ModalDefaultComponent implements OnInit  {
   
-  @Input() user: User;
-  myForm: FormGroup;
+  @Input() user: User; 
 
-  constructor(private activeModal: NgbActiveModal, public http: HttpClient,private formBuilder: FormBuilder) {
+  constructor(private activeModal: NgbActiveModal, public http: HttpClient,private utilities: UtilitiesService) {
     
   }  
 
@@ -29,30 +29,15 @@ export class ModalDefaultComponent implements OnInit  {
   }
 
   saveUser = (e: Event): any => {
-    
-    const url = `https://reqres.in/api/users`;       
+ 
     let options = {
       headers: new HttpHeaders().set('Content-Type','application/json')
     }
-    return this.http.patch<Observable<any>>(url,this.QueryStringToJSON($(e.target).serialize()),options)
-    .subscribe(response => {
-        console.log(response);
-        
+    return this.http.patch<Observable<any>>(url.updateUser,this.utilities.QueryStringToJSON($(e.target).serialize()),options)
+    .subscribe(response => {        
         this.activeModal.close();
     });
     
-   }
-
+   }  
   
-  QueryStringToJSON(input: string) {            
-    let pairs = input.slice(1).split('&');
-    
-    let result = {};
-    pairs.forEach((pair) => {
-        let pr = pair.split('=');
-        result[pr[0]] = decodeURIComponent(pr[1] || '');
-    });
-
-    return JSON.parse(JSON.stringify(result));
-  }
 }

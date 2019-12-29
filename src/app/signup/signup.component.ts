@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../shared/user';
-import { QueryparamsService } from '../service/queryparams.service'; 
+import { UtilitiesService } from '../service/utilities.service'; 
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
+import * as url from '../shared/serviceurls';
 
 @Component({
   selector: 'app-signup',
@@ -17,27 +18,25 @@ export class SignupComponent {
 
   private user: User;
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private queryParam: QueryparamsService,private router: Router) { 
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private utilities: UtilitiesService, private router: Router) { 
       this.user = {
-        email : queryParam.Get('email')
+        email : utilities.GetQueryString('email')
       }
   }
 
-    register = () => {
-    //alert(event.target.email.value);    
+    register = () => {   
     let options = {
       headers: new HttpHeaders().set('Content-Type','application/json')
     }
 
-    let apiURL = `https://reqres.in/api/register`;
+  
 
     let promise = new Promise((resolve, reject) => {
     
-    this.httpClient.post(apiURL,JSON.stringify(this.user),options)
+    this.httpClient.post(url.signUp,JSON.stringify(this.user),options)
       .toPromise()
       .then(
-        (res) => { // Success
-          console.log(res);
+        (res) => { // Success          
           this.router.navigate(['']);
         }, 
         (error) => {
