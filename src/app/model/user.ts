@@ -22,6 +22,5 @@ export class ListUsers{
     }
     return this.page_numbers;
   }
-
   
 }

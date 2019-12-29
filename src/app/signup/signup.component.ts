@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../shared/user';
+import { User } from '../model/user';
 import { UtilitiesService } from '../service/utilities.service'; 
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';

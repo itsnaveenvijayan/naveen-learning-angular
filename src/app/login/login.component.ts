@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { User } from '../shared/user';
-import * as url from '../shared/serviceurls';
+import { Component } from '@angular/core';
+import { User } from '../model/user';
 import { UtilitiesService } from '../service/utilities.service'; 
 import { Router } from '@angular/router';
+import { ApiService } from '../service/api.service'; 
 
 @Component({
   selector: 'app-login',
@@ -14,23 +13,16 @@ export class LoginComponent {
     
   user: User;
 
-  constructor(private httpClient: HttpClient, private utilities: UtilitiesService,private router: Router) { 
+  constructor(private utilities: UtilitiesService,private router: Router, private api: ApiService) { 
     this.user = {
         email : utilities.GetQueryString('email') || "eve.holt@reqres.in",
         password : utilities.GetQueryString('email') || "eve.holt@reqres.in"
       }
   }
 
-  login = () => {    
-    let options = {
-      headers: new HttpHeaders().set('Content-Type','application/json')
-    }
-    
-
-    let promise = new Promise((resolve, reject) => {
-    
-    this.httpClient.post(url.signIn,JSON.stringify(this.user),options)
-      .toPromise()
+  login = () => {
+    this.api.Login(this.user)
+    .toPromise()
       .then(
         (res) => {
           this.router.navigate(['/home']);
@@ -39,12 +31,5 @@ export class LoginComponent {
           alert(error.error.error);
         }
       );
-    });
-   
-    return promise;
- 
   }
-
- 
-
 }

@@ -18,12 +18,13 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { FooterComponent } from './footer/footer.component';
 import {APP_BASE_HREF} from '@angular/common';
 import { UtilitiesService } from './service/utilities.service';
+import { ApiService } from './service/api.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule,HttpClientModule,NgbModule,ReactiveFormsModule  ],
   declarations: [ AppComponent, HelloComponent, LoginComponent, SignupComponent, HomeComponent, NavbarComponent,ModalDefaultComponent, ModalConfirmComponent, FooterComponent  ],
   bootstrap:    [ AppComponent ],
-  providers: [UtilitiesService,{provide: APP_BASE_HREF, useValue: '/app'}],
+  providers: [UtilitiesService,{provide: APP_BASE_HREF, useValue: '/app', providers: [ApiService]}],
   entryComponents: [ModalDefaultComponent, ModalConfirmComponent]
 })
 export class AppModule { }

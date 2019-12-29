@@ -1,6 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../shared/user';
+import { User } from '../model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UtilitiesService } from '../service/utilities.service'; 
