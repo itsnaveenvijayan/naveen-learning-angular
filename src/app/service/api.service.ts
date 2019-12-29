@@ -8,24 +8,29 @@ import * as url from '../shared/serviceurls';
   providedIn : "root"
 })
 export class ApiService {
-
+  options = {
+      headers: new HttpHeaders().set('Content-Type','application/json')
+  }
   constructor(private http: HttpClient) { }
 
-  GetUsers = (pagenumber?: number): Observable<ListUsers> => {
+  getUsers = (pagenumber?: number): Observable<ListUsers> => {
     let param = { page : pagenumber };
     return this.http.get<ListUsers>(url.getUsers,{ params: param } )
-  }  
-
-  GetUser = (id:number): Observable<any> => {     
-
-    return this.http.get(url.getUser(id));
-    
   }
 
-  Login = (user: User): Observable<Loginresponse> => {
-    let options = {
-      headers: new HttpHeaders().set('Content-Type','application/json')
-    }
-    return this.http.post<Loginresponse>(url.signIn,JSON.stringify(user),options)
+  getUser = (id:number): Observable<User> => {
+    return this.http.get(url.getUser(id));
+  }
+
+  login = (user: User): Observable<Loginresponse> => {    
+    return this.http.post<Loginresponse>(url.signIn,JSON.stringify(user),this.options);
+  }
+
+  deleteUser = (id:number): Observable<any> => {
+    return this.http.delete(url.deleteUser(id));
+  }
+
+  updateUser = (user: User): Observable<User> => { 
+  return this.http.patch<User>(url.updateUser, user, this.options);    
   }
 }

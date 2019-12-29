@@ -15,14 +15,12 @@ export class HomeComponent {
 
   private users: ListUsers = new ListUsers();
   
-  constructor(private modalService: NgbModal, private api: ApiService) { 
-    
-    this.getUsers()
-    
+  constructor(private modalService: NgbModal, private api: ApiService) {     
+    this.getUsers()    
   }
 
   getUsers = (pagenumber?: number): void => {    
-    this.api.GetUsers(pagenumber)
+    this.api.getUsers(pagenumber)
     .subscribe((response: ListUsers) => 
     {
       this.users.page = response.page;
@@ -37,8 +35,7 @@ export class HomeComponent {
 
   openFormModal = (e: Event, user: User) => {
     e.preventDefault();
-
-    this.api.GetUser(user.id)
+    this.api.getUser(user.id)
     .subscribe((response) => 
     {
       const modalRef = this.modalService.open(ModalDefaultComponent);    

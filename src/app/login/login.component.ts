@@ -21,7 +21,7 @@ export class LoginComponent {
   }
 
   login = () => {
-    this.api.Login(this.user)
+    this.api.login(this.user)
     .toPromise()
       .then(
         (res) => {

@@ -7,7 +7,7 @@ export class User {
   avatar: string;
 }
 
-export class ListUsers{
+export class ListUsers {
   page: number;
   per_page: number;
   total: number;
