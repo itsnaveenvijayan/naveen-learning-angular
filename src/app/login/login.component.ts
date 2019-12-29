@@ -32,7 +32,7 @@ export class LoginComponent {
     this.httpClient.post(url.signIn,JSON.stringify(this.user),options)
       .toPromise()
       .then(
-        (res) => { // Success          
+        (res) => {
           this.router.navigate(['/home']);
         }, 
         (error) => {
