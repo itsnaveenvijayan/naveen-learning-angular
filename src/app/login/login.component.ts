@@ -25,7 +25,7 @@ export class LoginComponent {
     .toPromise()
       .then(
         (res) => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['home']);
         }, 
         (error) => {
           alert(error.error.error);
